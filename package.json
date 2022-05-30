@@ -4,5 +4,12 @@
   "main": "index.js",
   "repository": "https://github.com/branlice/swp.git",
   "author": "lishiwen <lishiwen@wclound.cn>",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.0.0",
+    "yarn": ">=1.2.0"
+  },
+  "scripts": {
+    "preinstall": "bash ./scripts/preinstall.sh"
+  }
 }

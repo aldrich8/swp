@@ -1,0 +1,5 @@
+#! /bin/bash
+
+[alias]
+    m = branch -m "$0" #更改当前分支名称
+    lo = log --oneline #一行显示git log
