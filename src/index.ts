@@ -1,3 +1,5 @@
+import "./a.less";
+
 export type PluginOption = |
     "defaultHead" | "defaultBodyBottom" | "defaultBodyTop" |
     "deferHead" | "deferBodyBottom" | "deferBodyTop" |
@@ -27,3 +29,8 @@ const plugin = createPlugin({
 console.log("asynchronous plugin", plugin);
 
 export default createPlugin
+
+document.body.innerHTML = `
+    <button type="button" class="asynchronous button">
+    安宁</button>
+`

@@ -10,6 +10,8 @@ import nodeResolve, { DEFAULTS } from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import serve from "rollup-plugin-serve";
 import commonjs from "rollup-plugin-commonjs";
+import styles from "rollup-plugin-styles";
+import autoprefixer from "autoprefixer";
 
 const isDev = process.env.R_ENV === "development";
 const isProd = process.env.R_ENV === "production";
@@ -29,6 +31,10 @@ export default merge(rollupBasicConfig, {
     commonjs(),
     isDev && html({ files: "./src/index.html", inject: false }),
     typescript(),
+    styles({
+      autoModules: true,
+      plugins: [autoprefixer()],
+    }),
     nodeResolve({
       extensions: [...DEFAULTS.extensions, ".ts"],
       moduleDirectories: ["node_modules"],
