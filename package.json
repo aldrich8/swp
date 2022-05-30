@@ -11,15 +11,22 @@
   },
   "scripts": {
     "preinstall": "bash ./scripts/preinstall.sh",
-    "build": "rimraf dist && rollup -c rollup.config.js"
+    "clear": "rimraf dist",
+    "build": "yarn run clear && cross-env R_ENV=production rollup -c rollup.config.js",
+    "start": "yarn run clear && cross-env R_ENV=development rollup -c rollup.config.js"
   },
   "devDependencies": {
     "@open-wc/building-rollup": "2.0.1",
+    "@open-wc/rollup-plugin-html": "1.2.5",
     "@rollup/plugin-node-resolve": "13.3.0",
     "@rollup/plugin-typescript": "8.3.2",
+    "cross-env": "7.0.3",
     "deepmerge": "4.2.2",
     "rimraf": "3.0.2",
     "rollup": "2.75.3",
+    "rollup-plugin-commonjs": "10.1.0",
+    "rollup-plugin-dts": "4.2.2",
+    "rollup-plugin-serve": "1.1.0",
     "typescript": "4.7.2"
   }
 }
