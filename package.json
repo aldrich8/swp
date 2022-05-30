@@ -10,6 +10,16 @@
     "yarn": ">=1.2.0"
   },
   "scripts": {
-    "preinstall": "bash ./scripts/preinstall.sh"
+    "preinstall": "bash ./scripts/preinstall.sh",
+    "build": "rimraf dist && rollup -c rollup.config.js"
+  },
+  "devDependencies": {
+    "@open-wc/building-rollup": "2.0.1",
+    "@rollup/plugin-node-resolve": "13.3.0",
+    "@rollup/plugin-typescript": "8.3.2",
+    "deepmerge": "4.2.2",
+    "rimraf": "3.0.2",
+    "rollup": "2.75.3",
+    "typescript": "4.7.2"
   }
 }
