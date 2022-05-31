@@ -3,8 +3,8 @@ import commonjs from "rollup-plugin-commonjs";
 import nodeResolve, { DEFAULTS } from "@rollup/plugin-node-resolve";
 import merge from "deepmerge";
 import { createBasicConfig } from "@open-wc/building-rollup";
-import multipleEntry from "rollup-plugin-multi-entry";
-import multipleOutput from "./scripts/rollup-plugins/rollup-plugin-multiple-output";
+// import multipleEntry from "rollup-plugin-multi-entry";
+// import multipleOutput from "./scripts/rollup-plugins/rollup-plugin-multiple-output";
 
 // import { isDev, isProd } from "./rollup.config";
 import typescript from "@rollup/plugin-typescript";
@@ -34,17 +34,6 @@ export default merge(widgetRollupBasicConfig, {
   ],
   plugins: [
     // multipleEntry(),
-    // multipleOutput({
-    //   //   // include: [],
-    //   //   // exclude: [],
-    //   //   // 自定义的
-    //   placeholder: {
-    //     "[folder]": {
-    //       include: "lib",
-    //       exclude: [],
-    //     },
-    //   },
-    // }),
     typescript(),
     nodeResolve({
       extensions: [...DEFAULTS.extensions, ".ts"],
