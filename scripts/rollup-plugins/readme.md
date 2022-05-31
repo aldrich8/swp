@@ -1,3 +1,5 @@
+> experimental plug-in, not for use in production environments
+> 
 # rollup-plugin-multiple-output
 
 ## Install
