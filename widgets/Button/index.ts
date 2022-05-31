@@ -1,3 +1,5 @@
 export const componentName = "Button";
-function a() { }
+function a() {
+    console.log("a", a)
+}
 export default a;

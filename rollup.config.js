@@ -12,48 +12,60 @@ import serve from "rollup-plugin-serve";
 import commonjs from "rollup-plugin-commonjs";
 import styles from "rollup-plugin-styles";
 import autoprefixer from "autoprefixer";
+import dts from "rollup-plugin-dts";
 
 export const isDev = process.env.R_ENV === "development";
 export const isProd = process.env.R_ENV === "production";
 
 const rollupBasicConfig = createBasicConfig();
 
-export default merge(rollupBasicConfig, {
-  input: "src/index.ts",
-  output: [
-    {
-      dir: "dist",
-      format: "es",
-      entryFileNames: "[name].js",
-      // chunkFileNames: "[name]-[hash].js",
-    },
-  ],
-  plugins: [
-    commonjs(),
-    isDev && html({ files: "./src/index.html", inject: false }),
-    typescript(),
-    styles({
-      autoModules: true,
-      plugins: [autoprefixer()],
-      minimize: true,
-    }),
-    nodeResolve({
-      extensions: [...DEFAULTS.extensions, ".ts"],
-      moduleDirectories: ["node_modules"],
-    }),
-    // ref: https://github.com/thgh/rollup-plugin-serve
-    isDev &&
-      serve({
-        open: true,
-        contentBase: "dist",
-        host: "127.0.0.1",
-        port: 5200,
-
-        historyApiFallback: false,
-        // https: {
-        //   key: fs.readFileSync("./.workspace/certificates/server.key"),
-        //   cert: fs.readFileSync("./.workspace/certificates/server.crt"),
-        // },
+export default [
+  merge(rollupBasicConfig, {
+    input: "src/index.ts",
+    output: [
+      {
+        dir: "dist/core",
+        format: "es",
+        entryFileNames: "[name].js",
+        // chunkFileNames: "[name]-[hash].js",
+      },
+    ],
+    plugins: [
+      commonjs(),
+      isDev && html({ files: "./src/index.html", inject: false }),
+      typescript(),
+      styles({
+        autoModules: true,
+        plugins: [autoprefixer()],
+        minimize: true,
       }),
-  ],
-});
+      nodeResolve({
+        extensions: [...DEFAULTS.extensions, ".ts"],
+        moduleDirectories: ["node_modules"],
+      }),
+      // ref: https://github.com/thgh/rollup-plugin-serve
+      isDev &&
+        serve({
+          open: true,
+          contentBase: "dist",
+          host: "127.0.0.1",
+          port: 5200,
+          historyApiFallback: false,
+          // https: {
+          //   key: fs.readFileSync("./.workspace/certificates/server.key"),
+          //   cert: fs.readFileSync("./.workspace/certificates/server.crt"),
+          // },
+        }),
+    ],
+  }),
+  {
+    input: "src/index.ts",
+    output: {
+      dir: "dist/core",
+      entryFileNames: "[name].d.ts",
+      format: "es",
+    },
+    external: [/\.(le|sc|c|sa)ss$/, /\.stylus/],
+    plugins: [dts()],
+  },
+];
