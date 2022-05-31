@@ -22,9 +22,11 @@ function createMultipleEntry(patternEntryString, options = {}) {
     const splitEntryKeywords = entry.split("/");
     try {
       const entryDirname = splitEntryKeywords[splitEntryKeywords.length - 2];
+
       const entryKey = !!options.dirnameLowerCase
         ? entryDirname.toLowerCase()
         : entryDirname;
+
       iterator[entryKey] = entry;
     } catch (error) {
       console.log(error);
@@ -33,10 +35,10 @@ function createMultipleEntry(patternEntryString, options = {}) {
   }, {});
   return entries;
 }
-
 const entries = createMultipleEntry("widgets/**/index.ts", {
   dirnameLowerCase: true,
 });
+
 export default [
   {
     input: entries,
