@@ -13,10 +13,11 @@ import commonjs from "rollup-plugin-commonjs";
 import styles from "rollup-plugin-styles";
 import autoprefixer from "autoprefixer";
 
-const isDev = process.env.R_ENV === "development";
-const isProd = process.env.R_ENV === "production";
+export const isDev = process.env.R_ENV === "development";
+export const isProd = process.env.R_ENV === "production";
 
 const rollupBasicConfig = createBasicConfig();
+
 export default merge(rollupBasicConfig, {
   input: "src/index.ts",
   output: [
@@ -34,6 +35,7 @@ export default merge(rollupBasicConfig, {
     styles({
       autoModules: true,
       plugins: [autoprefixer()],
+      minimize: true,
     }),
     nodeResolve({
       extensions: [...DEFAULTS.extensions, ".ts"],

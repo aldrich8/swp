@@ -13,7 +13,8 @@
     "preinstall": "bash ./scripts/preinstall.sh",
     "clear": "rimraf dist",
     "build": "yarn run clear && cross-env R_ENV=production rollup -c rollup.config.js",
-    "start": "yarn run clear && cross-env R_ENV=development rollup -c rollup.config.js"
+    "start": "yarn run clear && cross-env R_ENV=development rollup -c rollup.config.js",
+    "build:wgt": "rimraf widgets && rollup -c rollup.widget.js"
   },
   "devDependencies": {
     "@open-wc/building-rollup": "2.0.1",
@@ -28,8 +29,9 @@
     "rollup": "2.75.3",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-dts": "4.2.2",
+    "rollup-plugin-multi-entry": "2.1.0",
     "rollup-plugin-serve": "1.1.0",
-    "rollup-plugin-styles": "^4.0.0",
+    "rollup-plugin-styles": "4.0.0",
     "typescript": "4.7.2"
   }
 }
